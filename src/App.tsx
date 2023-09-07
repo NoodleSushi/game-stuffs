@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css'
 import Main from './pages/Main';
 import Game from './pages/Game';
@@ -7,7 +7,7 @@ import Connect4 from './games/Connect4';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/game' element={<Game />}>
@@ -15,7 +15,7 @@ function App() {
           <Route path='connect4' element={<Connect4 />}/>
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
