@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
-
+import GameOption from '../components/GameOption';
+import styles from './Main.module.css';
 
 function Main() {
   return <>
-    <h1>I am a main layout</h1>
-    <Link to='/game/tictactoe'>tictactoe</Link>
-    <Link to='/game/connect4'>connect4</Link>
+    <div className={`${styles.header}`}>
+      <h1>Game Stuffs!</h1>
+    </div>
+    <GameOption to='/game/tictactoe' label='TicTacToe' />
+    <GameOption to='/game/connect4' label='Connect 4' />
   </>
 }
 
