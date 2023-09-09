@@ -92,7 +92,7 @@ function Connect4() {
     playerTurn.current = playerTurn.current == CELL_STATE.PLAYER1 ? CELL_STATE.PLAYER2 : CELL_STATE.PLAYER1;
   }
 
-  return <>
+  return <div className={`${styles.root}`}>
     <div>
       {range(0, CELL_SIZE).map(x => 
         <Slot key={x} onSlotClick={() => handleSlot(x)}/>
@@ -106,7 +106,7 @@ function Connect4() {
         })}
       </div>
     )}
-  </>
+  </div>
 }
 
 export default Connect4;

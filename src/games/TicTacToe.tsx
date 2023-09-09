@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { range } from "lodash";
 import { TitleContext } from "../layouts/Game";
+import styles from './TicTacToe.module.css';
 
 function Cell({ value, onCellClick }: {value: string, onCellClick: () => void}) {
   return (
@@ -60,7 +61,7 @@ function TicTacToe() {
     setTurn(turn ^ 0b1);
   }
 
-  return <>
+  return <div className={`${styles.root}`}>
     {range(0, 3).map((y) =>
       <div key={y}>
         {range(0, 3).map((x) => {
@@ -72,7 +73,7 @@ function TicTacToe() {
       </div>
     )}
     {(winner != -1) ? (winner == -2) ? <p>Draw!</p> : <p>{`${winner}`} is the winner!</p> : undefined}
-  </>
+  </div>
 }
 
 export default TicTacToe;

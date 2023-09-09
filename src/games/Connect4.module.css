@@ -12,6 +12,10 @@
   margin: 0px;
 }
 
+.root {
+  display: inline-block;
+}
+
 div {
   margin: 0px;
   padding: 0px;
