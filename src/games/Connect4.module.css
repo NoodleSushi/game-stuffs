@@ -1,0 +1,36 @@
+
+
+.cell {
+  background-color: white;
+  min-width: 32px;
+  min-height: 32px;
+  border-style: solid;
+  border-width: 1px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+div {
+  margin: 0px;
+  padding: 0px;
+}
+
+.slot {
+  background-color: white;
+  width: 32px;
+  height: 24px;
+}
+
+.player1 {
+  background-color: blue;
+}
+
+.player2 {
+  background-color: red;
+}
+
+.highlighted {
+  border-color: yellow;
+}
