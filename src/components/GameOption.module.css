@@ -1,6 +1,12 @@
 .container {
   position: relative;
   display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+.container:hover {
+  transform: scale(1.25, 1.25) rotate(-10deg);
+  z-index: 1;
 }
 
 .img {
