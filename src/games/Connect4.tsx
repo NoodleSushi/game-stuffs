@@ -1,18 +1,13 @@
-import { range, times } from "lodash";
+import { range, times, uniq } from "lodash";
 import { useRef, useState } from "react";
 import styles from './Connect4.module.css';
 
 const CELL_SIZE = 7;
+const WINNING_LEN = 4;
 enum CELL_STATE {
   EMPTY,
   PLAYER1,
   PLAYER2,
-}
-
-const CELL2STYLE = {
-  [CELL_STATE.EMPTY]: '',
-  [CELL_STATE.PLAYER1]: styles.player1,
-  [CELL_STATE.PLAYER2]: styles.player2,
 }
 
 function Slot({ onSlotClick }: { onSlotClick: () => void }) {
@@ -24,47 +19,45 @@ function Slot({ onSlotClick }: { onSlotClick: () => void }) {
 }
 
 function Cell({ state, isHighlighted }: { state: CELL_STATE, isHighlighted: boolean }) {
+  const CELL2STYLE = {
+    [CELL_STATE.EMPTY]: '',
+    [CELL_STATE.PLAYER1]: styles.player1,
+    [CELL_STATE.PLAYER2]: styles.player2,
+  }
+
   return (
     <div className={`${styles.cell} ${CELL2STYLE[state]} ${isHighlighted ? styles.highlighted : ''}` } />
   )
 }
 
 function findWinner(board: CELL_STATE[]): [CELL_STATE, number[]] {
-  const check = (idxs: number[]) => idxs
-    .map(i => board[i])
-    .reduce((prev, cur) => prev == cur ? prev : CELL_STATE.EMPTY);
+  const check = (idxs: number[]): CELL_STATE => {
+    const values = idxs.map(i => board[i]);
+    return uniq(values).length === 1 ? values[0] : CELL_STATE.EMPTY;
+  };
+
+  const dirs: [number, number][] = [
+    [-1, 0],
+    [1, 0],
+    [0, -1],
+    [-1, -1],
+    [1, -1],
+  ]
 
   for (let x = 0; x < CELL_SIZE; x++) {
-    for (let y = CELL_SIZE - 1; y >= 3; y--) {
-      if (board[y * CELL_SIZE + x] == CELL_STATE.EMPTY)
+    for (let y = CELL_SIZE - 1; y >= WINNING_LEN - 1; y--) {
+      const idx = y * CELL_SIZE + x;
+      if (board[idx] == CELL_STATE.EMPTY)
         break;
-      const Vidxs = range(0, 4).map(i => (y - i) * CELL_SIZE + x);
-      const V = check(Vidxs);
-      if (V != CELL_STATE.EMPTY)
-        return [V, Vidxs];
 
-      if (x >= 3) {
-        const HLidxs = range(0, 4).map(i => y * CELL_SIZE + x - i);
-        const HL = check(HLidxs);
-        if (HL != CELL_STATE.EMPTY)
-          return [HL, HLidxs];
-
-        const DLidxs = range(0, 4).map(i => (y - i) * CELL_SIZE + x - i);
-        const DL = check(DLidxs);
-        if (DL != CELL_STATE.EMPTY)
-          return [DL, DLidxs]
-      }
-
-      if (x <= CELL_SIZE - 4) {
-        const HRidxs = range(0, 4).map(i => y * CELL_SIZE + x + i);
-        const HR = check(HRidxs);
-        if (HR != CELL_STATE.EMPTY)
-          return [HR, HRidxs];
-
-        const DRidxs = range(0, 4).map(i => (y - i) * CELL_SIZE + x + i)
-        const DR = check(DRidxs);
-        if (DR != CELL_STATE.EMPTY)
-          return [DR, DRidxs];
+      for (const [dx, dy] of dirs) {
+        const lastx = x + (WINNING_LEN - 1) * dx;
+        if (lastx < 0 || lastx >= CELL_SIZE)
+          continue;
+        const idxs = times(WINNING_LEN, (i) => idx + dy * i * CELL_SIZE + dx * i);
+        const state = check(idxs);
+        if (state != CELL_STATE.EMPTY)
+          return [state, idxs];
       }
     }
   }
