@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom"
 import { createContext, useState } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const TitleContext = createContext({ title: '', setTitle: (title: string) => { } });
 
 function Game() {
