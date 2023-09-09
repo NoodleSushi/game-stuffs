@@ -1,7 +1,7 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css'
-import Main from './pages/Main';
-import Game from './pages/Game';
+import Main from './layouts/Main';
+import Game from './layouts/Game';
 import TicTacToe from './games/TicTacToe';
 import Connect4 from './games/Connect4';
 
