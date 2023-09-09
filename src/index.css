@@ -1,7 +1,23 @@
-:root {
+@import url('https://fonts.googleapis.com/css?family=Schoolbell');
 
+:root {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
   margin: 0;
+}
+
+h1 {
+  font-family: 'Schoolbell', arial, serif; 
+  margin: 0;
+  padding: 0;
 }
