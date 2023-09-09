@@ -1,6 +1,7 @@
 import { range, times, uniq } from "lodash";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import styles from './Connect4.module.css';
+import { TitleContext } from "../layouts/Game";
 
 const CELL_SIZE = 7;
 const WINNING_LEN = 4;
@@ -69,6 +70,11 @@ function Connect4() {
   const playerTurn = useRef<(CELL_STATE.PLAYER1 | CELL_STATE.PLAYER2)>(CELL_STATE.PLAYER1);
   const totalTurns = useRef<number>(0);
   const [winner, highlights] = findWinner(board);
+  const { setTitle } = useContext(TitleContext);
+  
+  useEffect(() => {
+    setTitle("Connect 4")
+  }, [])
 
   const handleSlot = (x: number) => {
     if (winner != CELL_STATE.EMPTY)

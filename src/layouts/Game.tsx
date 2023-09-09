@@ -1,10 +1,16 @@
 import { Outlet } from "react-router-dom"
+import { createContext, useState } from "react";
 
+export const TitleContext = createContext({ title: '', setTitle: (title: string) => { } });
 
 function Game() {
+  const [title, setTitle] = useState('');
+
   return <>
-    <h1>I am a game Layout</h1>
-    <Outlet/>
+    <h1>{ title }</h1>
+    <TitleContext.Provider value={{ title, setTitle }}>
+      <Outlet/>
+    </TitleContext.Provider>
   </>
 }
 

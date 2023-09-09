@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { range } from "lodash";
+import { TitleContext } from "../layouts/Game";
 
 function Cell({ value, onCellClick }: {value: string, onCellClick: () => void}) {
   return (
@@ -41,6 +42,11 @@ function TicTacToe() {
   const [playerMask, setPlayerMask] = useState(0b000000000);
   const [turn, setTurn] = useState(0);
   const [winner, setWinner] = useState(-1);
+  const { setTitle } = useContext(TitleContext);
+  
+  useEffect(() => {
+    setTitle("TicTacToe")
+  }, [])
 
   useEffect(() => {
     setWinner(findWinner(pieceMask, playerMask));
