@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom"
 import { createContext, useState } from "react";
 
+// @ts-ignore:next-line
 export const TitleContext = createContext({ title: '', setTitle: (title: string) => { } });
 
 function Game() {
