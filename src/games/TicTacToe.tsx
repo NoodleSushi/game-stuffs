@@ -43,6 +43,7 @@ function TicTacToe() {
   const [playerMask, setPlayerMask] = useState(0b000000000);
   const [turn, setTurn] = useState(0);
   const [winner, setWinner] = useState(-1);
+  const { setTitle, setDesc } = useContext(TitleContext);
 
   let text = '';
 
@@ -54,7 +55,8 @@ function TicTacToe() {
     text = `${(['X', 'O'])[turn]} wins!`;
   
   useEffect(() => {
-    setTitle("TicTacToe")
+    setTitle("TicTacToe");
+    setDesc("Let's dive into the excitement of tic-tac-toe! Take turns with your opponent, placing X's or O's on the grid to aim for a winning row, column, or diagonal. Ready, set, play – and may the best strategist win!")
   }, [])
 
   useEffect(() => {
@@ -72,16 +74,16 @@ function TicTacToe() {
   return <div className={`${styles.root}`}>
     <center><h1 style={{marginBottom: '32px'}}>{ text }</h1></center>
     <div>
-    {range(0, 3).map((y) =>
-      <div key={y}>
-        {range(0, 3).map((x) => {
-          const idx = y * 3 + x;
-          const isPlaced = ((pieceMask >> idx) & 0b1) > 0;
-          const player = ((playerMask >> idx) & 0b1) > 0;
-          return <Cell key={idx} value={isPlaced ? player ? 'X' : 'O' : '-'} onCellClick={() => handleCell(idx)} />
-        })}
-      </div>
-    )}
+      {range(0, 3).map((y) =>
+        <div key={y}>
+          {range(0, 3).map((x) => {
+            const idx = y * 3 + x;
+            const isPlaced = ((pieceMask >> idx) & 0b1) > 0;
+            const player = ((playerMask >> idx) & 0b1) > 0;
+            return <Cell key={idx} value={isPlaced ? player ? 'X' : 'O' : '-'} onCellClick={() => handleCell(idx)} />
+          })}
+        </div>
+      )}
     </div>
   </div>
 }

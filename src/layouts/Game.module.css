@@ -1,4 +1,49 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  flex-grow: 1;
+}
+
+.desc_container {
+  max-width: 240px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.desc_text {
+  font-size: 1.2em;
+}
+
+.desc_bottom {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
 .container {
+  flex-grow: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding-bottom: 67px;
+}
+
+.desc_button {
+  background-color: #0000;
+  border: 0;
+  font-family: 'Schoolbell', arial, serif;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.desc_button:hover {
+  cursor: pointer;
 }

@@ -70,10 +70,11 @@ function Connect4() {
   const playerTurn = useRef<(CELL_STATE.PLAYER1 | CELL_STATE.PLAYER2)>(CELL_STATE.PLAYER1);
   const totalTurns = useRef<number>(0);
   const [winner, highlights] = findWinner(board);
-  const { setTitle } = useContext(TitleContext);
+  const { setTitle, setDesc } = useContext(TitleContext);
   
   useEffect(() => {
     setTitle("Connect 4")
+    setDesc("Ready for some four-in-a-row fun? Drop your colored discs one at a time, aiming to connect four in a row vertically, horizontally, or diagonally. Outsmart your opponent to win!");
   }, [])
 
   const handleSlot = (x: number) => {
