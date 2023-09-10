@@ -5,7 +5,7 @@ import styles from './TicTacToe.module.css';
 
 function Cell({ value, onCellClick }: {value: string, onCellClick: () => void}) {
   return (
-    <button onClick={onCellClick}>
+    <button className={`${styles.cell}`} onClick={onCellClick}>
       {value}
     </button>
   )

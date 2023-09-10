@@ -1,3 +1,13 @@
 .root {
   display: inline-block;
 }
+
+.cell {
+  font-family: 'Schoolbell', arial, serif;
+  font-size: 5em;
+  border: 4px solid;
+  background-color: #00000000;
+  min-width: 128px;
+  min-height: 128px;
+  border-radius: 10px;
+}
