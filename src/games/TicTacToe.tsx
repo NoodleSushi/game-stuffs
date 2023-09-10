@@ -43,7 +43,15 @@ function TicTacToe() {
   const [playerMask, setPlayerMask] = useState(0b000000000);
   const [turn, setTurn] = useState(0);
   const [winner, setWinner] = useState(-1);
-  const { setTitle } = useContext(TitleContext);
+
+  let text = '';
+
+  if (winner == -2)
+    text = 'Draw!';
+  else if (winner == -1)
+    text = `It is ${(['O', 'X'])[turn]}'s turn`;
+  else
+    text = `${(['X', 'O'])[turn]} wins!`;
   
   useEffect(() => {
     setTitle("TicTacToe")
@@ -62,6 +70,8 @@ function TicTacToe() {
   }
 
   return <div className={`${styles.root}`}>
+    <center><h1 style={{marginBottom: '32px'}}>{ text }</h1></center>
+    <div>
     {range(0, 3).map((y) =>
       <div key={y}>
         {range(0, 3).map((x) => {
@@ -72,7 +82,7 @@ function TicTacToe() {
         })}
       </div>
     )}
-    {(winner != -1) ? (winner == -2) ? <p>Draw!</p> : <p>{`${winner}`} is the winner!</p> : undefined}
+    </div>
   </div>
 }
 
